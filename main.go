@@ -1,18 +1,23 @@
 package main
- 
+
 import (
-    "fmt"
-    "log"
+	"fmt"
+	"os"
 )
- 
+
 func main() {
-    n := 0
-    fmt.Print("Введите целое число: ")
-    _, err := fmt.Scan(&n)
-    if err != nil {
-        log.Fatal(err)
-    }
-    fmt.Printf("Вы ввели число: %d\n", n)
+
+	for {
+		fmt.Println("Введите число")
+		data := make([]byte, 8)
+		n, err := os.Stdin.Read(data)
+		if err == nil && n > 0 {
+			process(data)
+		} else {
+			break
+		}
+	}
+
 }
 
 func process(data []byte) {
